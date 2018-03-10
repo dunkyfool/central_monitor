@@ -1,6 +1,6 @@
-#Central Monitor#
+# Central Monitor
 
-##How to install##
+## How to install
 
 This program is based on Ubuntu 16.04 and will install three items, including node_exporter, prometheus, and grafana.
 
@@ -41,7 +41,7 @@ cd /opt/central_monitor
 ./setup.sh gui
 ```
 
-##How to remove##
+## How to remove
 
 1. Go to '/opt/central_monitor/' and copy setup.sh to parent folder 
 
@@ -55,14 +55,14 @@ cp setup.sh ../
 ./setup.sh remove
 ```
 
-##Configure##
+## Configure
 
 1. [Prometheus] It will keep the data one year by default
 2. [Prometheus] The configure is at /opt/central_monitor/bin/prometheus.yml
 3. [Prometheus] The alert rule is at /opt/central_monitor/bin/alert.rules
 4. [Prometheus] It listens to the 9090 port
-5. [Node_exporter] To customize the required output, it has to modify the /opt/central_monitor/script/node_exp.sh
-6. [Node_exporter] It listens to the 9100 port
+5. [Node\_exporter] To customize the required output, it has to modify the /opt/central_monitor/script/node_exp.sh
+6. [Node\_exporter] It listens to the 9100 port
 7. [Grafana] The default account and password is admin/admin
 8. [Grafana] The data source is prometheus and access by proxy http://localhost:9090
 9. [Grafana] It listens to 3000 port
