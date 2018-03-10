@@ -1,0 +1,10 @@
+
+ALERT CPU                                                                                             
+  IF sum(irate(container_cpu_user_seconds_total{name=~".+"}[30s])*100) by (name) > 1                
+  FOR 30s                                                                                             
+  #LABELS { severity = "cpu" }                                                                      
+  ANNOTATIONS {                                                                                       
+    summary = "CPU CONSUM TOO MUCH",                                                                
+    description = "WTF"                                                                             
+  }                                                                                                   
+  

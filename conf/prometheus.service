@@ -1,0 +1,18 @@
+[Unit]
+Description=Prometheus
+
+[Service]
+Type=idle
+ExecStart=/opt/central_monitor/bin/prometheus -config.file=/opt/central_monitor/bin/prometheus.yml -storage.local.path=/opt/prometheus -storage.local.retention 8765h
+#ExecStart=/opt/central_monitor/bin/prometheus -config.file=/opt/central_monitor/bin/prometheus.yml -storage.local.path=/opt/prometheus 
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+KillMode=process
+PrivateTmp=true
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,2 @@
+node_prometheus_usage{content="cpu"} 9.1
+node_prometheus_usage{content="mem"} 9.2

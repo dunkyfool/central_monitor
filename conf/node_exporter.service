@@ -1,0 +1,17 @@
+[Unit]
+Description=Node Exporter
+
+[Service]
+Type=idle
+ExecStart=/opt/central_monitor/bin/node_exporter -collector.textfile.directory "/opt/test_pkg/central_monitor/txt" 
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+KillMode=process
+PrivateTmp=true
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
+

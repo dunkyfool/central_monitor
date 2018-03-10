@@ -1,0 +1,2 @@
+node_nginx_usage{content="cpu"} 0.0
+node_nginx_usage{content="mem"} 0.0

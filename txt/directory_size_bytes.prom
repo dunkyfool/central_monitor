@@ -1,0 +1,7 @@
+node_directory_size_bytes{directory="/var/log"} 122478861
+node_directory_size_bytes{directory="/opt/grafana"} 190631
+node_directory_size_bytes{directory="/opt/kafka"} 4179
+node_directory_size_bytes{directory="/opt/prometheus"} 1363850958
+node_directory_size_bytes{directory="/opt/redis"} 41
+node_directory_size_bytes{directory="/opt/rh"} 6
+node_directory_size_bytes{directory="/opt/rsyslog"} 1829317608

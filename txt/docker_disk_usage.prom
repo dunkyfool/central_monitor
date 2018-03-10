@@ -1,0 +1,3 @@
+node_docker_disk_usage{content="Used"} 3.702
+node_docker_disk_usage{content="Total"} 107.4
+node_docker_disk_usage{content="Available"} 103.7
