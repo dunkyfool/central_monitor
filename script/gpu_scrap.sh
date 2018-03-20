@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Declare
-FILE=test/log
-LOG=txt/gpu_metrics.prom
+FILE=/opt/central_monitor/txt/log
+LOG=/opt/central_monitor/txt/gpu_metrics.prom
 TIME=`head -n1 ${FILE}`
 VERSION=`head -n3 ${FILE} | tail -n1 | cut -d' ' -f3`
 
