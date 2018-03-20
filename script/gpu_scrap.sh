@@ -3,6 +3,9 @@
 # Declare
 FILE=/opt/central_monitor/txt/log
 LOG=/opt/central_monitor/txt/gpu_metrics.prom
+
+nvidia-smi > ${LOG} 
+
 TIME=`head -n1 ${FILE}`
 VERSION=`head -n3 ${FILE} | tail -n1 | cut -d' ' -f3`
 
