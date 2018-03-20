@@ -18,11 +18,14 @@ function gpu_parser {
 		GPU_MEM=`echo ${GPU} | cut -d'|' -f7 | cut -d' ' -f2`
 		GPU_MAX_MEM=`echo ${GPU} | cut -d'|' -f7 | cut -d' ' -f4`
 		GPU_UTIL=`echo ${GPU} | cut -d '|' -f8 | cut -d' ' -f2`
-
-		echo ${GPU_NO}
-		echo ${GPU_FAN} ${GPU_TEMP} ${GPU_PWR} ${GPU_MAX_PWR}
-		echo ${GPU_MEM} ${GPU_MAX_MEM}
-		echo ${GPU_UTIL}
+		
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_FAN\"} ${GPU_FAN}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_TEMP\"} ${GPU_TEMP}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_MEM\"} ${GPU_MEM}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_MAX_MEM\"} ${GPU_MAX_MEM}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_PWR\"} ${GPU_PWR}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_MAX_PWR\"} ${GPU_MAX_PWR}"
+		echo "node_gpu_metrics{instance=${GPU_NO}, content=\"GPU_UTIL\"} ${GPU_UTIL}"
 	done
 }
 
