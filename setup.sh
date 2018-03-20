@@ -22,7 +22,6 @@ elif [ "$1" = "pro" ]; then
   echo $PASS | sudo -S systemctl start prometheus
   echo $PASS | sudo -S crontab -l > mycron
   echo $PASS | sudo -S echo "* * * * * sh /opt/monitor/script/node_exp.sh pro" >> mycron
-  echo $PASS | sudo -S echo "* * * * * sh /opt/monitor/script/gpu_scrap.sh" >> mycron
   echo $PASS | sudo -S crontab mycron
   echo $PASS | sudo -S rm mycron
   echo "##################"
@@ -41,6 +40,7 @@ elif [ "$1" = "node" ]; then
   echo $PASS | sudo -S systemctl start node_exporter
   echo $PASS | sudo -S crontab -l > mycron
   echo $PASS | sudo -S echo "* * * * * sh /opt/monitor/script/node_exp.sh opt" >> mycron
+  echo $PASS | sudo -S echo "* * * * * sh /opt/monitor/script/gpu_scrap.sh" >> mycron
   echo $PASS | sudo -S crontab mycron
   echo $PASS | sudo -S rm mycron
   echo "##################"
