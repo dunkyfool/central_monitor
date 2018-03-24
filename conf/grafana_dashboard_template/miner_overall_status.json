@@ -2,6 +2,7 @@
   "annotations": {
     "list": [
       {
+        "$$hashKey": "object:1519",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -16,30 +17,27 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 3,
-  "links": [],
-  "panels": [
+  "links": [
     {
-      "folderId": 0,
-      "gridPos": {
-        "h": 3,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "headings": false,
-      "id": 35,
-      "limit": 10,
-      "links": [],
-      "query": "",
-      "recent": false,
-      "repeat": null,
-      "search": false,
-      "starred": true,
+      "$$hashKey": "object:1689",
+      "icon": "external link",
       "tags": [],
-      "title": "Useful Dashboard",
-      "transparent": true,
-      "type": "dashlist"
+      "targetBlank": true,
+      "title": "Prometheus Alert",
+      "type": "link",
+      "url": "http://localhost:9090/alerts"
     },
+    {
+      "$$hashKey": "object:1690",
+      "icon": "external link",
+      "tags": [
+        "System"
+      ],
+      "targetBlank": true,
+      "type": "dashboards"
+    }
+  ],
+  "panels": [
     {
       "alert": {
         "conditions": [
@@ -88,7 +86,7 @@
         "h": 5,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 0
       },
       "id": 37,
       "legend": {
@@ -114,11 +112,11 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(ALERTS{alertstate=\"firing\"}) by (alertname)",
+          "expr": "sum(ALERTS{alertstate=\"firing\", monitor=\"CENTRAL MONITOR\"}) by (alertname)",
           "format": "time_series",
           "interval": "30s",
           "intervalFactor": 1,
@@ -196,7 +194,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 8
+        "y": 5
       },
       "id": 14,
       "interval": null,
@@ -235,7 +233,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "min(node_time - node_boot_time)",
+          "expr": "min(node_time{instance!=\"localhost:9100\"} - node_boot_time{instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -276,7 +274,7 @@
         "h": 4,
         "w": 20,
         "x": 4,
-        "y": 8
+        "y": 5
       },
       "id": 2,
       "interval": null,
@@ -315,7 +313,6 @@
       "tableColumn": "",
       "targets": [
         {
-          "$$hashKey": "object:242",
           "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
@@ -357,7 +354,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 12
+        "y": 9
       },
       "id": 4,
       "interval": null,
@@ -396,7 +393,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"0\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"0\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -437,7 +434,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 12
+        "y": 9
       },
       "id": 12,
       "interval": null,
@@ -476,7 +473,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"1\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"1\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -517,7 +514,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 12
+        "y": 9
       },
       "id": 6,
       "interval": null,
@@ -556,7 +553,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"2\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"2\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -597,7 +594,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 12
+        "y": 9
       },
       "id": 7,
       "interval": null,
@@ -636,7 +633,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"3\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"3\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -677,7 +674,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 12
+        "y": 9
       },
       "id": 8,
       "interval": null,
@@ -716,7 +713,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"4\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"4\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -757,7 +754,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 12
+        "y": 9
       },
       "id": 9,
       "interval": null,
@@ -796,7 +793,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"5\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"5\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -837,7 +834,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 12
+        "y": 9
       },
       "id": 10,
       "interval": null,
@@ -876,7 +873,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"6\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"6\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -917,7 +914,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 12
+        "y": 9
       },
       "id": 11,
       "interval": null,
@@ -956,7 +953,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"7\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"7\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -997,7 +994,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 16
+        "y": 13
       },
       "id": 5,
       "interval": null,
@@ -1036,7 +1033,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"0\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"0\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"0\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"0\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1078,7 +1075,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 16
+        "y": 13
       },
       "id": 15,
       "interval": null,
@@ -1117,7 +1114,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"1\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"1\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"1\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1159,7 +1156,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 16
+        "y": 13
       },
       "id": 16,
       "interval": null,
@@ -1198,7 +1195,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"2\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"2\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"2\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"2\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1240,7 +1237,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 16
+        "y": 13
       },
       "id": 17,
       "interval": null,
@@ -1279,7 +1276,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"3\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"3\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"3\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"3\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1321,7 +1318,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 16
+        "y": 13
       },
       "id": 18,
       "interval": null,
@@ -1360,7 +1357,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"4\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"4\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"4\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"4\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1402,7 +1399,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 16
+        "y": 13
       },
       "id": 19,
       "interval": null,
@@ -1441,7 +1438,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"5\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"5\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"5\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"5\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1483,7 +1480,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 16
+        "y": 13
       },
       "id": 20,
       "interval": null,
@@ -1522,7 +1519,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"6\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"6\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"6\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"6\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1564,7 +1561,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 16
+        "y": 13
       },
       "id": 21,
       "interval": null,
@@ -1603,7 +1600,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"7\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"7\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"7\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"7\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1645,7 +1642,7 @@
         "h": 4,
         "w": 3,
         "x": 0,
-        "y": 20
+        "y": 17
       },
       "id": 22,
       "interval": null,
@@ -1684,7 +1681,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"0\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"0\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1726,7 +1723,7 @@
         "h": 4,
         "w": 3,
         "x": 3,
-        "y": 20
+        "y": 17
       },
       "id": 23,
       "interval": null,
@@ -1765,7 +1762,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"1\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"1\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1807,7 +1804,7 @@
         "h": 4,
         "w": 3,
         "x": 6,
-        "y": 20
+        "y": 17
       },
       "id": 24,
       "interval": null,
@@ -1846,7 +1843,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"2\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"2\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1888,7 +1885,7 @@
         "h": 4,
         "w": 3,
         "x": 9,
-        "y": 20
+        "y": 17
       },
       "id": 25,
       "interval": null,
@@ -1927,7 +1924,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"3\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"3\", instance!=\"localhost:9100\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1969,7 +1966,7 @@
         "h": 4,
         "w": 3,
         "x": 12,
-        "y": 20
+        "y": 17
       },
       "id": 26,
       "interval": null,
@@ -2008,7 +2005,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"4\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"4\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2050,7 +2047,7 @@
         "h": 4,
         "w": 3,
         "x": 15,
-        "y": 20
+        "y": 17
       },
       "id": 27,
       "interval": null,
@@ -2089,7 +2086,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"5\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"5\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2131,7 +2128,7 @@
         "h": 4,
         "w": 3,
         "x": 18,
-        "y": 20
+        "y": 17
       },
       "id": 28,
       "interval": null,
@@ -2170,7 +2167,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"6\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"6\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2212,7 +2209,7 @@
         "h": 4,
         "w": 3,
         "x": 21,
-        "y": 20
+        "y": 17
       },
       "id": 29,
       "interval": null,
@@ -2251,7 +2248,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"7\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"7\", instance!=\"localhost:9100\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2282,7 +2279,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 21
       },
       "id": 31,
       "legend": {
@@ -2310,7 +2307,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\", instance!=\"localhost:9100\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
@@ -2364,7 +2361,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 29
       },
       "id": 32,
       "legend": {
@@ -2392,7 +2389,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_MEM\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_MEM\", instance!=\"localhost:9100\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
@@ -2446,7 +2443,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 37
       },
       "id": 33,
       "legend": {
@@ -2474,7 +2471,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
@@ -2518,7 +2515,7 @@
       ]
     }
   ],
-  "refresh": false,
+  "refresh": "10s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -2529,7 +2526,7 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -2560,5 +2557,5 @@
   "timezone": "",
   "title": "Miner Overall Status",
   "uid": "fn-ByVkmk",
-  "version": 78
+  "version": 97
 }
