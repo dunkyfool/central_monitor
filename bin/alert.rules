@@ -8,10 +8,10 @@ ALERT InstanceDown
   }                                                                                                   
   
 ALERT LoseGPU
-  IF count(node_gpu_metrics{content="GPU_PWR", instance!="localhost:9100"}) by (instance) < 8
+  IF sum(node_gpu_metrics{content="GPU_STATUS", instance!="localhost:9100"}) by (instance,devid) == 0
   FOR 10s
   ANNOTATIONS {  
     summary = "Lose GPU",
-    description = "Instance {{ $label.instance }} lose GPU"
+    description = "Instance {{ $label.instance }} lose GPU {{ $label.devid }}"
   }                                                                                                   
   
