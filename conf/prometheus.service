@@ -3,6 +3,7 @@ Description=Prometheus
 
 [Service]
 Type=idle
+ExecStartPre=/opt/central_monitor/script/gpu_env.sh
 ExecStart=/opt/central_monitor/bin/prometheus -config.file=/opt/central_monitor/bin/prometheus.yml -storage.local.path=/opt/prometheus -storage.local.retention 8765h
 #ExecStart=/opt/central_monitor/bin/prometheus -config.file=/opt/central_monitor/bin/prometheus.yml -storage.local.path=/opt/prometheus 
 ExecReload=/bin/kill -s HUP $MAINPID
