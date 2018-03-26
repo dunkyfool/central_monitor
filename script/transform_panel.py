@@ -14,7 +14,7 @@ def switch_panel():
     for name in FILE_LIST:
         curl, ui = loadJSON(name)
         curl['dashboard']['panels'] = ui['panels']
-        with open(name,'w') as f:
+        with open(CURL_PATH+name,'w') as f:
             json.dump(curl, f)
 
 if __name__=="__main__":
