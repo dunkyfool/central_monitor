@@ -200,7 +200,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "min(node_time{instance!=\"localhost:9100\"} - node_boot_time{instance!=\"localhost:9100\"})",
+          "expr": "min(node_time{instance=\"miner1\"} - node_boot_time{instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -280,7 +280,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"})",
+          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -360,7 +360,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"0\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"0\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -440,7 +440,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"1\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"1\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -520,7 +520,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"2\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"2\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -600,7 +600,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"3\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"3\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -680,7 +680,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"4\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"4\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -760,7 +760,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"5\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"5\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -840,7 +840,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"6\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"6\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -920,7 +920,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"7\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"7\", instance=\"miner1\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "refId": "A"
@@ -1000,7 +1000,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"0\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"0\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"0\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"0\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1081,7 +1081,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"1\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"1\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"1\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"1\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1162,7 +1162,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"2\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"2\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"2\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"2\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1243,7 +1243,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"3\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"3\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"3\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"3\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1324,7 +1324,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"4\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"4\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"4\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"4\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1405,7 +1405,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"5\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"5\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"5\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"5\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1486,7 +1486,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"6\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"6\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"6\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"6\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1567,7 +1567,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"7\", instance!=\"localhost:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"7\", instance!=\"localhost:9100\"})",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"7\", instance=\"miner1\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"7\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1648,7 +1648,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"0\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"0\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1729,7 +1729,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"1\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"1\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1810,7 +1810,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"2\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"2\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1891,7 +1891,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"3\", instance!=\"localhost:9100\"})",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"3\", instance=\"miner1\"})",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1972,7 +1972,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"4\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"4\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2053,7 +2053,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"5\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"5\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2134,7 +2134,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"6\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"6\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2215,7 +2215,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"7\", instance!=\"localhost:9100\"}) ",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"7\", instance=\"miner1\"}) ",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -2274,7 +2274,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\", instance!=\"localhost:9100\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\", instance=\"miner1\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
@@ -2356,7 +2356,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_MEM\", instance!=\"localhost:9100\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_MEM\", instance=\"miner1\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
@@ -2438,7 +2438,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"}) by (devid)",
+          "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\", instance=\"miner1\"}) by (devid)",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Device-{{devid}}",
