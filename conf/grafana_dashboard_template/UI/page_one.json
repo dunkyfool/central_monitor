@@ -79,8 +79,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:15928",
           "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -99,6 +101,91 @@
       "valueName": "avg"
     },
     {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": null,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "$$hashKey": "object:15754",
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "$$hashKey": "object:15755",
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "$$hashKey": "object:15593",
+          "expr": "count(up{instance!=\"localhost:9100\"} == 0)",
+          "format": "time_series",
+          "instant": true,
+          "intervalFactor": 1,
+          "refId": "A"
+        }
+      ],
+      "thresholds": "1,2",
+      "title": "Number of Losed Miner",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "$$hashKey": "object:15757",
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -107,8 +194,8 @@
       "fill": 1,
       "gridPos": {
         "h": 5,
-        "w": 11,
-        "x": 3,
+        "w": 9,
+        "x": 6,
         "y": 0
       },
       "id": 2,
@@ -137,8 +224,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "$$hashKey": "object:15994",
           "expr": "sum(ALERTS{alertname=\"InstanceDown\",alertstate=\"firing\",monitor=\"CENTRAL MONITOR\"}) by (instance)",
           "format": "time_series",
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -191,8 +280,8 @@
       "fill": 1,
       "gridPos": {
         "h": 5,
-        "w": 10,
-        "x": 14,
+        "w": 9,
+        "x": 15,
         "y": 0
       },
       "id": 3,
@@ -282,38 +371,43 @@
       "scroll": true,
       "showHeader": true,
       "sort": {
-        "col": 1,
+        "col": 3,
         "desc": false
       },
       "styles": [
         {
           "alias": "Time",
           "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "link": false,
+          "linkUrl": "",
           "pattern": "Time",
           "type": "date"
         },
         {
           "alias": "",
-          "colorMode": null,
+          "colorMode": "row",
           "colors": [
             "rgba(245, 54, 54, 0.9)",
             "rgba(237, 129, 40, 0.89)",
             "rgba(50, 172, 45, 0.97)"
           ],
-          "decimals": 2,
+          "decimals": 1,
           "pattern": "/.*/",
-          "thresholds": [],
+          "thresholds": [
+            "0.5",
+            "1"
+          ],
           "type": "number",
           "unit": "short"
         }
       ],
       "targets": [
         {
-          "expr": "sum(node_gpu_metrics{content=\"GPU_STATUS\"}) by (instance,devid)",
+          "expr": "sum(node_gpu_metrics{content=\"GPU_STATUS\", instance!=\"localhost:9100\"}) by (instance,devid)",
           "format": "table",
           "instant": true,
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}-GPU{{devid}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -322,6 +416,7 @@
       "type": "table"
     }
   ],
+  "refresh": "30s",
   "schemaVersion": 16,
   "style": "dark",
   "tags": [
@@ -362,5 +457,5 @@
   "timezone": "",
   "title": "Page One",
   "uid": "Eoqu0Akmk",
-  "version": 12
+  "version": 26
 }
