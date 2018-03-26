@@ -39,39 +39,6 @@
   ],
   "panels": [
     {
-      "alert": {
-        "conditions": [
-          {
-            "evaluator": {
-              "params": [
-                0
-              ],
-              "type": "gt"
-            },
-            "operator": {
-              "type": "and"
-            },
-            "query": {
-              "params": [
-                "A",
-                "30s",
-                "now"
-              ]
-            },
-            "reducer": {
-              "params": [],
-              "type": "avg"
-            },
-            "type": "query"
-          }
-        ],
-        "executionErrorState": "alerting",
-        "frequency": "30s",
-        "handler": 1,
-        "name": "Alerts",
-        "noDataState": "no_data",
-        "notifications": []
-      },
       "aliasColors": {},
       "bars": true,
       "dashLength": 10,

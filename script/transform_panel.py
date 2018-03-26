@@ -1,0 +1,21 @@
+import json
+from pprint import pprint
+
+CURL_PATH = '../conf/grafana_dashboard_template/curl/'
+UI_PATH = '../conf/grafana_dashboard_template/UI/'
+FILE_LIST = ['page_one.json','miner_status.json']
+
+def loadJSON(name):
+    curl = json.load(open(CURL_PATH+name))
+    ui   = json.load(open(UI_PATH+name))
+    return curl, ui
+
+def switch_panel():
+    for name in FILE_LIST:
+        curl, ui = loadJSON(name)
+        curl['dashboard']['panels'] = ui['panels']
+        with open(name,'w') as f:
+            json.dump(curl, f)
+
+if __name__=="__main__":
+    switch_panel()
