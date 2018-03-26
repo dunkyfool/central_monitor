@@ -1,12 +1,15 @@
 #!/bin/bash
 
-URL="localhost:3000"
+URL="localhost:3000/api/dashboards/db"
 USER="admin"
 PASS="admin"
 JSON="Content-type: application/json"
 
-PAGEONE="/conf/grafana_dashboard_template/UI/page_one.json"
-MINER="/conf/grafana_dashboard_template/UI/miner_status.json"
+PAGEONE=`cat ../conf/grafana_dashboard_template/curl/page_one.json `
+curl -s -X POST ${URL} -u ${USER}:${PASS} -H "${JSON}" -d "${PAGEONE}" | python -m json.tool
 
-curl -s ${URL} -u ${USER}:${PASS} -H ${JSON} -d @${PAGEONE} | python -m json.tool
-curl -s ${URL} -u ${USER}:${PASS} -H ${JSON} -d @${MINER} | python -m json.tool
+for ID in $(seq 1 3);
+do
+	MINER=`cat ../conf/grafana_dashboard_template/curl/miner_status.json | sed "s/Miner 1/Miner ${ID}/g"`
+	curl -s -X POST ${URL} -u ${USER}:${PASS} -H "${JSON}" -d "${MINER}" | python -m json.tool
+done
