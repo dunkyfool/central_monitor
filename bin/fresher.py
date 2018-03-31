@@ -44,93 +44,78 @@ def takeLast(hostlist):
     return tmpHostList
 
 
-while True:
-    ################
-    # Get hostlist #
-    ################
-    hostlist = []               # for mapping hostname to ip
-    nodeNum = 0                 # Num of all nodes
+################
+# Get hostlist #
+################
+hostlist = []               # for mapping hostname to ip
+nodeNum = 0                 # Num of all nodes
 
-    with open(hostsFile, 'r') as f:
-        # hostlist = [
-        #   (hostname, ip), 
-        #   ...
-        # ]
-        hostlist = [(line.split()[1],line.split()[0]) for line in f if line.strip()]
+with open(hostsFile, 'r') as f:
+    # hostlist = [
+    #   (hostname, ip), 
+    #   ...
+    # ]
+    hostlist = [(line.split()[1],line.split()[0]) for line in f if line.strip()]
 
-        # filter those dont have valid ip
-        hostlist = filter(lambda hostIp: validateIP(hostIp[1]), hostlist)
+    # filter those dont have valid ip
+    hostlist = filter(lambda hostIp: validateIP(hostIp[1]), hostlist)
 
-        # take last pair of the same ip (to avoid some ill-defined /etc/hosts)
-        hostlist = takeLast(hostlist)
-        print '[info] hostlist ==', hostlist
+    # take last pair of the same ip (to avoid some ill-defined /etc/hosts)
+    hostlist = takeLast(hostlist)
+    print '[info] hostlist ==', hostlist
 
-        nodeNum = len(hostlist)
+    nodeNum = len(hostlist)
 
 
-    ####################
-    # Check Difference #
-    ####################
-    if ctr == 0:  # At beginning
-        oldlist = hostlist
-        wrFlag=1
-    elif ctr == 1:
-        # seems like dictionary comparsison is guaranteed (recursively)
-        # ref: http://stackoverflow.com/questions/1911273/is-there-a-better-way-to-compare-dictionary-values
-        if oldlist == hostlist:
-            print '[info] /etc/hosts is the same'
-            wrFlag=0
-        else:
-            print '[info] /etc/hosts is different from last time'
-            wrFlag=1
-            oldlist = hostlist# change oldlist
-
-    ##################################
-    # Create string of listened host #
-    ##################################
-    str_hostlist = '\''
-    if nodeNum > 0:
-        for pair in hostlist:
-            str_hostlist += pair[1]+':9100\','
-        str_hostlist = str_hostlist[:-1]
+####################
+# Check Difference #
+####################
+if ctr == 0:  # At beginning
+    oldlist = hostlist
+    wrFlag=1
+elif ctr == 1:
+    # seems like dictionary comparsison is guaranteed (recursively)
+    # ref: http://stackoverflow.com/questions/1911273/is-there-a-better-way-to-compare-dictionary-values
+    if oldlist == hostlist:
+        print '[info] /etc/hosts is the same'
+        wrFlag=0
     else:
-        str_hostlist = '\'localhost:9100\''
+        print '[info] /etc/hosts is different from last time'
+        wrFlag=1
+        oldlist = hostlist# change oldlist
 
-    #################
-    # Create config #
-    #################
-    if wrFlag==1:
-        with open(configFile, 'w') as f:
-        #with open('tmpCFG', 'w') as f:
-            f.write('global:\n')
-            f.write('  scrape_interval:     15s\n')
-            f.write('  evaluation_interval: 15s\n')
-            f.write('  external_labels:\n')
-            f.write('      monitor: \'CENTRAL MONITOR\':\n\n')
-            f.write('rule_files:\n')
-            f.write('   - alert.rules\n\n')
-            f.write('scrape_configs:\n')
-            f.write('  - job_name: \'node-exporter\'\n')
-            f.write('    static_configs:\n')
-            f.write('            - targets: ['+str_hostlist+']\n\n')
-            f.write('  - job_name: \'prometheus\'\n')
-            f.write('    static_configs:\n')
-            f.write('            - targets: [\'localhost:9090\']\n')
+##################################
+# Create string of listened host #
+##################################
+str_hostlist = ''
+if nodeNum > 0:
+    for pair in hostlist:
+        str_hostlist += '\''+pair[1]+':9100\','
+    str_hostlist = str_hostlist[:-1]
+else:
+    str_hostlist = '\'localhost:9100\''
 
-        #####################
-        # Reload Prometheus #
-        #####################
-        if ctr==0:
-            print '[info] First time to restart prometheus'
-            cmd = 'systemctl restart prometheus'
-            os.system(cmd)
-            ctr=1
-        else:
-            print '[info] Found some difference in /etc/hosts and try to restart prometheus'
-            cmd = 'systemctl restart nginx'
-            os.system(cmd)
+#################
+# Create config #
+#################
+if wrFlag==1:
+    with open(configFile, 'w') as f:
+    #with open('tmpCFG', 'w') as f:
+        f.write('global:\n')
+        f.write('  scrape_interval:     15s\n')
+        f.write('  evaluation_interval: 15s\n')
+        f.write('  external_labels:\n')
+        f.write('      monitor: \'CENTRAL MONITOR\'\n\n')
+        f.write('rule_files:\n')
+        f.write('   - alert.rules\n\n')
+        f.write('scrape_configs:\n')
+        f.write('  - job_name: \'node-exporter\'\n')
+        f.write('    static_configs:\n')
+        f.write('            - targets: ['+str_hostlist+']\n\n')
+        f.write('  - job_name: \'prometheus\'\n')
+        f.write('    static_configs:\n')
+        f.write('            - targets: [\'localhost:9090\']\n')
 
-    cmd = 'sleep 10'
-    print '[info]: ' + cmd + ' secs now'
-    os.system(cmd)
+cmd = 'systemctl restart prometheus'
+os.system(cmd)
 
