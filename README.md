@@ -1,5 +1,16 @@
 # Central Monitor
 
+## Set up /etc/hosts
+
+Please make sure the /etc/hosts as below:
+
+```
+127.0.0.1 localhost
+10.0.0.1  miner1
+10.0.0.2  miner2
+10.0.0.3  miner3
+```
+
 ## How to install
 
 This program is based on Ubuntu 16.04 and will install three items, including node_exporter, prometheus, and grafana.
@@ -53,6 +64,8 @@ python bin/fresher.py
 python script/transform_panel.py && ./script/batch_impot.sh
 ```
 
+9. Start wrapper (./wrapper)
+
 ## How to remove
 
 1. Go to '/opt/central_monitor/' and copy setup.sh to parent folder 
@@ -78,4 +91,3 @@ cp setup.sh ../
 7. [Grafana] The default account and password is admin/admin
 8. [Grafana] The data source is prometheus and access by proxy http://localhost:9090
 9. [Grafana] It listens to 3000 port
-10. [/etc/hosts] Define like this 10.0.0.1 miner1.

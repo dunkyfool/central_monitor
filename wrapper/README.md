@@ -1,9 +1,9 @@
 # Requirement
 
-1. docker
+1. Install docker, docker-compose, python, pypi, nodejs 4.2.6, npm 3.5.2 
 2. pip install -r requrement.txt
-3. nodejs 4.2.6 npm 3.5.2
-4. npm install express body-parser
+3. npm install express body-parser
+4. cd docker && docker build -t redis:backup .
 
 # RUN
 
