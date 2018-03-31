@@ -33,7 +33,6 @@ def validateIP(s):
 def takeLast(hostlist):
     ip2host = {}
     for hostIp in hostlist:
-        if hostIp[0] != 'localhost':
             host = hostIp[0]
             ip = hostIp[1]
             ip2host[ip] = host
@@ -90,7 +89,7 @@ elif ctr == 1:
 str_hostlist = ''
 if nodeNum > 0:
     for pair in hostlist:
-        str_hostlist += '\''+pair[1]+':9100\','
+        str_hostlist += '\''+pair[0]+':9100\','
     str_hostlist = str_hostlist[:-1]
 else:
     str_hostlist = '\'localhost:9100\''
