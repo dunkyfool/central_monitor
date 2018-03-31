@@ -41,6 +41,18 @@ cd /opt/central_monitor
 ./setup.sh gui
 ```
 
+7. Update prometheus.yml (make sure /etc/hosts is correct)
+
+```
+python bin/fresher.py
+```
+
+8. Update & import dashboard (make sure /etc/hosts is correct)
+
+```
+python script/transform_panel.py && ./script/batch_impot.sh
+```
+
 ## How to remove
 
 1. Go to '/opt/central_monitor/' and copy setup.sh to parent folder 
@@ -66,3 +78,4 @@ cp setup.sh ../
 7. [Grafana] The default account and password is admin/admin
 8. [Grafana] The data source is prometheus and access by proxy http://localhost:9090
 9. [Grafana] It listens to 3000 port
+10. [/etc/hosts] Define like this 10.0.0.1 miner1.
