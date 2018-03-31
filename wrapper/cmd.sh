@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ "$1" = "up" ]; then
+	docker-compose up -d
+elif [ "$1" = "down" ]; then
+	docker-compose stop && docker-compose rm -f
+else
+	docker-compose $1
+fi

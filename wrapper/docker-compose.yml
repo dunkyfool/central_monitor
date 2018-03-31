@@ -1,0 +1,12 @@
+version: '2' 
+
+services:
+  redis:
+    image: "redis:backup"
+    hostname: redis
+    restart: always
+    volumes:
+      - /opt/redis_backup:/data
+    ports:
+      - 6379:6379
+    network_mode: "host"
