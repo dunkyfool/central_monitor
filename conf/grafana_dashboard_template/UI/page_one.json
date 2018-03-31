@@ -165,7 +165,7 @@
       "targets": [
         {
           "$$hashKey": "object:214",
-          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance!=\"localhost:9100\"})",
+          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance!~\"localhost.+\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -247,7 +247,7 @@
       "targets": [
         {
           "$$hashKey": "object:358",
-          "expr": "count(node_gpu_metrics{content=\"GPU_MHS\"} < 23)",
+          "expr": "count(node_gpu_metrics{instance!~\"localhost.+\",content=\"GPU_MHS\"} < 23)",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -722,7 +722,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
@@ -753,5 +753,5 @@
   "timezone": "browser",
   "title": "Page One",
   "uid": "Eoqu0Akmk",
-  "version": 34
+  "version": 42
 }
