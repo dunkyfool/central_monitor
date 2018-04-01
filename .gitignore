@@ -1,2 +1,3 @@
 *.swp
 wrapper/node_modules/*
+*.pyc
