@@ -36,12 +36,13 @@ app.post('/decreaseFreq', (req, res) => {
 		//console.log(evalMatches);
 		for ( obj of evalMatches ) {
 			miner = obj.metric.split("instance=\"")[1].split(":",1)[0]
+			devid = obj.metric.split("devid=\"")[1].split(":",1)[0]
 			var spawn = require("child_process").spawn;
-			var pythonProcess = spawn('python',["interface.py", miner, "decreaseFreq"]);
+			var pythonProcess = spawn('python',["interface.py", miner, "decreaseFreq", devid]);
 			pythonProcess.stdout.on('data', function (data) {
 				// Do something with the data returned from python script
 			});
-			console.log(miner+" DECREASE FREQ!");
+			console.log(miner+" "+devid+" DECREASE FREQ!");
 		};
 	}
 
@@ -56,12 +57,13 @@ app.post('/increaseFreq', (req, res) => {
 		//console.log(evalMatches);
 		for ( obj of evalMatches ) {
 			miner = obj.metric.split("instance=\"")[1].split(":",1)[0]
+			devid = obj.metric.split("devid=\"")[1].split(":",1)[0]
 			var spawn = require("child_process").spawn;
-			var pythonProcess = spawn('python',["interface.py", miner, "increaseFreq"]);
+			var pythonProcess = spawn('python',["interface.py", miner, "increaseFreq", devid]);
 			pythonProcess.stdout.on('data', function (data) {
 				// Do something with the data returned from python script
 			});
-			console.log(miner+" INCREASE FREQ!");
+			console.log(miner+" "+devid+" INCREASE FREQ!");
 		};
 	}
 
