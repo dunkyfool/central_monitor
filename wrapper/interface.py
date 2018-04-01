@@ -1,9 +1,9 @@
-import sys
+import sys, os
 import redis
 
 def main():
 #  try:
-      miner, opt = sys.argv[1:]
+      miner, opt = sys.argv[1], sys.argv[2]
       r = redis.StrictRedis()
       outcome = r.hgetall(miner)
 
@@ -18,18 +18,18 @@ def main():
 
           elif opt == "decreaseFreq":
               devid = sys.argv[3]
-              dev_freq = int(outcome["dev_"+devid+"freq"]) - 50
-              r.hmset(miner, {"dev_"+devid+"freq": dev_freq})
+              dev_freq = int(outcome["dev_"+devid+"_freq"]) - 50
+              r.hmset(miner, {"dev_"+devid+"_freq": dev_freq})
               # decreaseFreq command
-              cmd = "ssh "+miner+"/opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
+              cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
 
           elif opt == "increaseFreq":
               devid = sys.argv[3]
-              dev_freq = int(outcome["dev_"+devid+"freq"]) + 50
-              r.hmset(miner, {"dev_"+devid+"freq": dev_freq})
+              dev_freq = int(outcome["dev_"+devid+"_freq"]) + 50
+              r.hmset(miner, {"dev_"+devid+"_freq": dev_freq})
               # increaseFreq command
-              cmd = "ssh "+miner+"/opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
+              cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
       else:
         print "[WARN] " + miner + " not found!"
@@ -43,8 +43,8 @@ def reboot(chasis_no, server_no):
 	from pymodbus.client.sync import ModbusSerialClient as ModbusClient
         import time
 
-        #chasis_no=10
-        #server_no=2048
+        chasis_no=10
+        server_no=2048
 
 	client = ModbusClient(method="ascii", port="/dev/ttyUSB0", stopbits=1, bytesize=8, parity="N", baudrate=9600, timeout=20)
 	client.write_register(0x1000, 600, unit=chasis_no)
