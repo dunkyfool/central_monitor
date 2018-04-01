@@ -8,11 +8,16 @@
 # RUN
 
 1. ./cmd.sh up
-2. node index.js
+2. python create\_config.py
+3. python ini\_redis.py
+4. node index.js
 
 # Note
 
 Grafana has to set notification channel as webhook
+
 REBOOT\_URL: localhost:8080/reboot
+
 DECREASEFREQ\_URL: localhost:8080/decreaseFreq
+
 INCREASEFREQ\_URL: localhost:8080/increaseFreq
