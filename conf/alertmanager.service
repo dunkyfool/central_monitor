@@ -1,0 +1,18 @@
+[Unit]
+Description=Alertmanager
+
+[Service]
+Type=idle
+ExecStartPre=/opt/central_monitor/script/gpu_env.sh
+ExecStart=/opt/central_monitor/bin/alertmanager -config.file=/opt/central_monitor/bin/alertmanager.yml 
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+KillMode=process
+PrivateTmp=true
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,18 @@
+[Unit]
+Description=Wrapper
+
+[Service]
+Type=idle
+ExecStartPre=/opt/central_monitor/script/gpu_env.sh
+ExecStart=/usr/bin/node /opt/central_monitor/wrapper/index.js 
+ExecReload=/bin/kill -s HUP $MAINPID
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+KillMode=process
+PrivateTmp=true
+Restart=always
+RestartSec=1s
+
+[Install]
+WantedBy=multi-user.target
+

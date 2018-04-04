@@ -1,10 +1,10 @@
 
 ALERT InstanceDown
   IF sum(up{job="node-exporter"}) by (instance) == 0
-  FOR 10s
+  FOR 5s
   ANNOTATIONS {  
     summary = "Node is down!",
-    description = "Instance {{ $label.instance }} is down"
+    description = 'Instance {{ $labels.instance }} is down'
   }                                                                                                   
   
 ALERT LoseGPU
@@ -12,6 +12,6 @@ ALERT LoseGPU
   FOR 10s
   ANNOTATIONS {  
     summary = "Lose GPU",
-    description = "Instance {{ $label.instance }} lose GPU {{ $label.devid }}"
+    description = 'Instance {{ $labels.instance }} lose GPU {{ $labels.devid }}'
   }                                                                                                   
   

@@ -19,7 +19,7 @@ def validateIP(s):
 def takeLast(hostlist):
     ip2host = {}
     for hostIp in hostlist:
-        if hostIp[0] != 'localhost':
+        if hostIp[0][0:5] == 'miner':
             host = hostIp[0]
             ip = hostIp[1]
             ip2host[ip] = host

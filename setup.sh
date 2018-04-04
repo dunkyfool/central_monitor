@@ -3,15 +3,40 @@
 
 if [ "$1" = "ini" ]; then
   echo "Make binary file executable!!"
-  chmod +x bin/node_exporter bin/prometheus 
+  chmod +x bin/node_exporter bin/prometheus bin/alertmanager 
   echo "##################"
   echo "#     CHECK      #"
   echo "##################"
   ls -l bin
 
 elif [ "$1" = "shortlist" ]; then
-  echo "ini pro node gui remove"
+  echo "ini alert pro node gui remove"
   
+elif [ "$1" = "alert" ]; then
+  # prometheus.service
+  read -p "Please Enter User Password: " PASS
+  echo "[Info] Setup alertmanager"
+  echo $PASS | sudo -S cp conf/alertmanager.service /etc/systemd/system/
+  echo $PASS | sudo -S systemctl enable alertmanager
+  echo $PASS | sudo -S systemctl daemon-reload
+  echo $PASS | sudo -S systemctl start alertmanager
+  echo "##################"
+  echo "#     CHECK      #"
+  echo "##################"
+  echo $PASS | sudo -S systemctl status prometheus
+
+  echo "[Info] Setup wrapper"
+  echo $PASS | sudo -S cp conf/wrapper.service /etc/systemd/system/
+  echo $PASS | sudo -S systemctl enable wrapper
+  echo $PASS | sudo -S systemctl daemon-reload
+  echo $PASS | sudo -S pip install -r wrapper/requirement.txt
+  echo $PASS | sudo -S npm install express body-parser
+  echo $PASS | sudo -S systemctl start wrapper
+  echo "##################"
+  echo "#     CHECK      #"
+  echo "##################"
+  echo $PASS | sudo -S systemctl status wrapper
+
 elif [ "$1" = "pro" ]; then
   # prometheus.service
   read -p "Please Enter User Password: " PASS
@@ -92,9 +117,9 @@ elif [ "$1" = "remove" ]; then
   echo $PASS | sudo -S crontab -l
 
 elif [ "$1" = "" ]; then
-  echo "[INFO] ./setup.sh [ini|node|pro|gui|remove]"
+  echo "[INFO] ./setup.sh [ini|alert|node|pro|gui|remove]"
   echo "[INFO] Option ini attempts to initialize the binary file. Please run it before installing!"
   echo "[INFO] Option node is for miner"
-  echo "[INFO] Option pro & gui are both for central monitor"
+  echo "[INFO] Option pro & gui & alert are all for central monitor"
   echo "[INFO] Option remove will remove all central monitor program"
 fi
