@@ -40,31 +40,37 @@ cd /opt/central_monitor
 ./setup.sh node
 ```
 
-5. Install proemtheus
+5. Install alertmanager and wrapper
+
+```
+./setup.sh alert
+```
+
+6. Install proemtheus
 
 ```
 ./setup.sh pro
 ```
 
-6. Install grafana
+7. Install grafana
 
 ```
 ./setup.sh gui
 ```
 
-7. Update prometheus.yml (make sure /etc/hosts is correct)
+8. Update prometheus.yml (make sure /etc/hosts is correct)
 
 ```
 python bin/fresher.py
 ```
 
-8. Update & import dashboard (make sure /etc/hosts is correct)
+9. Update & import dashboard (make sure /etc/hosts is correct)
 
 ```
 python script/transform_panel.py && ./script/batch_impot.sh
 ```
 
-9. Start wrapper (./wrapper)
+10. Go to wrapper and follow readme to install
 
 ## How to remove
 
@@ -78,6 +84,12 @@ cp setup.sh ../
 
 ```
 ./setup.sh remove
+```
+
+3. Clean up cronjob
+
+```
+crontab -e
 ```
 
 ## Configure

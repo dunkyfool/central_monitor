@@ -2,15 +2,28 @@
 
 1. Install docker, docker-compose, python, pypi, nodejs 4.2.6, npm 3.5.2 
 2. pip install -r requrement.txt
-3. npm install express body-parser
+3. npm install -g express body-parser
 4. cd docker && docker build -t redis:backup .
 
 # RUN
 
-1. ./cmd.sh up
-2. python create\_config.py
-3. python ini\_redis.py
-4. node index.js
+1. Set up Redis
+
+```
+./cmd.sh up
+```
+2. Create Config & initialize redis
+
+```
+python create\_config.py && python ini\_redis.py
+```
+
+3. Start Wrapper
+
+```
+systemctl start wrapper.service
+#node index.js
+```
 
 # Note
 
