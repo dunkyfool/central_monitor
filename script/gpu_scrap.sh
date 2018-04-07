@@ -29,7 +29,7 @@ function gpu_parser {
 		echo ${IP}
 		echo ${MHS}
 
-		if [ "${VERSION}" != "384.111" ]; then
+		if [ "${VERSION}" != "384.90" ]; then
 			GPU_NO=${LINE}
 			echo "node_gpu_metrics{devid=\"${GPU_NO}\", ip=\"${IP}\", content=\"GPU_FAN\"} 0" >> ${LOG}
 			echo "node_gpu_metrics{devid=\"${GPU_NO}\", ip=\"${IP}\", content=\"GPU_TEMP\"} 0" >> ${LOG}
