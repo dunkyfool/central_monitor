@@ -42,6 +42,16 @@ app.get("/*", (req, res) => {
         client.hgetall(miner, function(err, obj) {
            res.send(obj);
         });
+        
+        mac = req.query.mac;
+        client.hgetall(mac, function(err, obj) {
+           res.send(obj);
+        });
+        
+        ip = req.query.ip;
+        client.hgetall(ip, function(err, obj) {
+           res.send(obj);
+        });
 });
 
 
