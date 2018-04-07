@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 
+var redis = require('redis'),
+    client = redis.createClient();
+
+
 app.post("/*", (req, res) => {
 	var alertname = req.body.commonLabels.alertname;
 	var miner = req.body.commonLabels.instance.split(":",1)[0];
@@ -31,6 +35,13 @@ app.post("/*", (req, res) => {
 		console.log("Trivial message as above!")
 		res.send("OK")
 	}
+});
+
+app.get("/*", (req, res) => {
+        miner = 'miner'+req.query.miner;
+        client.hgetall(miner, function(err, obj) {
+           res.send(obj);
+        });
 });
 
 

@@ -3,8 +3,9 @@ Description=Wrapper
 
 [Service]
 Type=idle
+Environment=NODE_PATH=/usr/local/lib/node_modules
 ExecStartPre=/opt/central_monitor/script/gpu_env.sh
-ExecStart=/usr/bin/node /opt/central_monitor/wrapper/index.js 
+ExecStart=/usr/bin/nodejs /opt/central_monitor/wrapper/index.js 
 ExecReload=/bin/kill -s HUP $MAINPID
 KillSignal=SIGQUIT
 TimeoutStopSec=5

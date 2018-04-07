@@ -13,7 +13,7 @@ elif [ "$1" = "shortlist" ]; then
   echo "ini alert pro node gui remove"
   
 elif [ "$1" = "alert" ]; then
-  # prometheus.service
+  # alertmanager and wrapper Install docker, docker-compose npm nodejs
   read -p "Please Enter User Password: " PASS
   echo "[Info] Setup alertmanager"
   echo $PASS | sudo -S cp conf/alertmanager.service /etc/systemd/system/
@@ -30,7 +30,7 @@ elif [ "$1" = "alert" ]; then
   echo $PASS | sudo -S systemctl enable wrapper
   echo $PASS | sudo -S systemctl daemon-reload
   echo $PASS | sudo -S pip install -r wrapper/requirement.txt
-  echo $PASS | sudo -S npm install express body-parser
+  echo $PASS | sudo -S npm install -g express body-parser redis
   echo $PASS | sudo -S systemctl start wrapper
   echo "##################"
   echo "#     CHECK      #"
