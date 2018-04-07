@@ -9,7 +9,7 @@ ETH=/opt/central_monitor/txt/gpu.log
 function gpu_parser {
 	rm -f ${LOG} ${FILE}
 
-	IP=`/sbin/ifconfig | grep -A1 enp6s0 | grep -o inet.*Bcast | cut -d' ' -f2 | tr -d 'addr:'`
+	IP=`/sbin/ifconfig | grep -A1 eth0 | grep -o inet.*Bcast | cut -d' ' -f2 | tr -d 'addr:'`
 	MHS=`tac ${ETH} | head -n5 | grep ETH -m1 | cut -c26- | tr -d 'GPUMh/s' | tr -s ' '`
 	REBOOT=`last reboot | grep ^reboot | tr -s ' ' | awk -F' ' '{print $6 $7}' | sort | uniq -c | grep $(LANG=en_us_88591 date +%b%d) | tr -s ' ' | cut -d ' ' -f2`
 	if [ "${REBOOT}" = "" ]; then
