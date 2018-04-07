@@ -4,7 +4,8 @@ URL="localhost:3000/api/dashboards/db"
 USER="admin"
 PASS="admin"
 JSON="Content-type: application/json"
-NUM=`grep -c miner /etc/hosts`
+#NUM=`grep -c miner /etc/hosts`
+NUM=${1}
 
 PAGEONE=`cat ../conf/grafana_dashboard_template/curl/page_one.json `
 curl -s -X POST ${URL} -u ${USER}:${PASS} -H "${JSON}" -d "${PAGEONE}" | python -m json.tool
