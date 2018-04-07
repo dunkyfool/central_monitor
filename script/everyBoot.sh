@@ -7,8 +7,8 @@ TWO=2
 touch /var/log/wtmp
 
 # ip -> minerid -> freq
-IP=`ifconfig | grep -oE HWaddr.*| cut -d' ' -f2`
-MINERID=`curl -s "central_monitor:8080/?mac=${MAC}"| tr -d 'miner{}'`
+IP=`ifconfig  | grep -oE addr:.*B | tr -d 'addr: B'`
+MINERID=`curl -s "central_monitor:8080/?mac=${IP}"| tr -d 'miner{}'`
 FREQ=`curl -s "central_monitor:8080/?miner=${MINERID}"`
 
 #setFreq
