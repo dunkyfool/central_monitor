@@ -12,7 +12,7 @@ def main():
           if opt == "reboot":
               re_cnt = outcome['reboot_count']
               chasis_no = int(outcome['chasis_no'])
-              server_no = 2048 + int(outcome['server_no'])
+              server_no = int(outcome['server_no'])
               r.hmset(miner, {"reboot_count": int(re_cnt)+1})
               # reboot command
               reboot(chasis_no, server_no)

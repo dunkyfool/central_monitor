@@ -1,3 +1,5 @@
 *.swp
 wrapper/node_modules/*
 *.pyc
+txt/*
+node_modules/*

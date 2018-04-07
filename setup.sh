@@ -23,7 +23,7 @@ elif [ "$1" = "alert" ]; then
   echo "##################"
   echo "#     CHECK      #"
   echo "##################"
-  echo $PASS | sudo -S systemctl status prometheus
+  echo $PASS | sudo -S systemctl status alertmanager
 
   echo "[Info] Setup wrapper"
   echo $PASS | sudo -S cp conf/wrapper.service /etc/systemd/system/
