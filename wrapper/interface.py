@@ -20,6 +20,8 @@ def main():
           elif opt == "decreaseFreq":
               devid = sys.argv[3]
               dev_freq = int(outcome["dev_"+devid+"_freq"]) - 50
+              if dev_freq < 1700:
+                dev_freq = 1700
               r.hmset(miner, {"dev_"+devid+"_freq": dev_freq})
               # decreaseFreq command
               random_name = uuid.uuid4().hex
@@ -40,6 +42,8 @@ def main():
           elif opt == "increaseFreq":
               devid = sys.argv[3]
               dev_freq = int(outcome["dev_"+devid+"_freq"]) + 50
+              if dev_freq > 2000:
+                dev_freq = 2000
               r.hmset(miner, {"dev_"+devid+"_freq": dev_freq})
               # increaseFreq command
               random_name = uuid.uuid4().hex
