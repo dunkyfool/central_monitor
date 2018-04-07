@@ -35,7 +35,7 @@ def main():
                                                                                 5, freq['dev_5_freq'],
                                                                                 6, freq['dev_6_freq'],
                                                                                 7, freq['dev_7_freq']))
-              cmd = 'scp /tmp/'+random_name+' ryan@'+miner+':/home/ryan/freq.csv && rm /tmp/'+random_name
+              cmd = 'scp /tmp/'+random_name+' ethos@'+miner+':/home/ethos/freq.csv && rm /tmp/'+random_name
               #cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
 
@@ -57,7 +57,7 @@ def main():
                                                                                 5, freq['dev_5_freq'],
                                                                                 6, freq['dev_6_freq'],
                                                                                 7, freq['dev_7_freq']))
-              cmd = 'scp /tmp/'+random_name+' ryan@'+miner+':/home/ryan/freq.csv && rm /tmp/'+random_name
+              cmd = 'scp /tmp/'+random_name+' ethos@'+miner+':/home/ethos/freq.csv && rm /tmp/'+random_name
               #cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
       else:
