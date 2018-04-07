@@ -37,23 +37,26 @@ app.post("/*", (req, res) => {
 	}
 });
 
-app.get("/*", (req, res) => {
-        miner = 'miner'+req.query.miner;
+app.get("/miner/*", (req, res) => {
+        miner = 'miner'+req.query.id;
         client.hgetall(miner, function(err, obj) {
-           res.send(obj);
-        });
-        
-        mac = req.query.mac;
-        client.hgetall(mac, function(err, obj) {
-           res.send(obj);
-        });
-        
-        ip = req.query.ip;
-        client.hgetall(ip, function(err, obj) {
            res.send(obj);
         });
 });
 
+app.get("/mac/*", (req, res) => {
+        mac = req.query.id;
+        client.get(mac, function(err, obj) {
+           res.send(obj);
+        });
+});
+
+app.get("/ip/*", (req, res) => {
+        ip = req.query.id;
+        client.get(ip, function(err, obj) {
+           res.send(obj);
+        });
+});
 
 //app.post('/reboot', (req, res) => {
 //	var evalMatches = req.body.evalMatches;
