@@ -1,8 +1,17 @@
 #!/bin/bash
 
-DIR=/home/dunkyfool
+DIR=/home/ethos
 TWO=2
 
+#reboot
+touch /var/log/wtmp
+
+# ip -> minerid -> freq
+IP=`ifconfig | grep -oE HWaddr.*| cut -d' ' -f2`
+MINERID=`curl -s "central_monitor:8080/?mac=${MAC}"| tr -d 'miner{}'`
+FREQ=`curl -s "central_monitor:8080/?miner=${MINERID}"`
+
+#setFreq
 for idx in {1..8};
 do
 	NO_IDX=$((TWO*idx-1))
