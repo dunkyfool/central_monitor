@@ -50,11 +50,11 @@ def main():
       "dev_5_freq": 1900,
       "dev_6_freq": 1900,
       "dev_7_freq": 1900,
-      "ip": pair[1],
-      "chasis_no": CHASIS_NO[pair[0]][0],
-      "server_no": CHASIS_NO[pair[0]][1],
     }
     r.hmset(pair[0], default)
+      #"ip": pair[1],
+      #"chasis_no": CHASIS_NO[pair[0]][0],
+      #"server_no": CHASIS_NO[pair[0]][1],
 
 if __name__=="__main__":
   main()
