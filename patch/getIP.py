@@ -25,7 +25,7 @@ def readConfig():
                                    "TEAMVIEWERID": TEAMVIEWERID,
                                    "PLC_NO": PLC_NO[1:],
                                    "REG_ADDR": REG_ADDR.rstrip(),
-                                   "CHASIS_NO": CHASIS_NO,
+                                   "CHASIS_NO": CHASIS_NO.rstrip(),
 				   "reboot_count": 0,
 				   "dev_0_freq": 1900,
 				   "dev_1_freq": 1900,
