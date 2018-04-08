@@ -57,7 +57,8 @@ elif [ "$1" = "pro" ]; then
 
 elif [ "$1" = "node" ]; then
   # node_exporter.service
-  read -p "Please Enter User Password: " PASS
+  #read -p "Please Enter User Password: " PASS
+  PASS=digitalespacio
   echo "[Info] Setup node exporter"
   echo $PASS | sudo -S cp conf/node_exporter.service /etc/systemd/system/
   echo $PASS | sudo -S systemctl enable node_exporter
