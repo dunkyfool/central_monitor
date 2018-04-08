@@ -263,7 +263,7 @@
       "targets": [
         {
           "$$hashKey": "object:11373",
-          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance=\"miner1:9100\"})",
+          "expr": "count(node_gpu_metrics{content=\"GPU_PWR\", instance=\"miner1:9100\", ip=~\".+\"})",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
