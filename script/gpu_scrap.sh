@@ -19,7 +19,7 @@ function gpu_parser {
 
 	for LINE in 0 1 2 3 4 5 6 7
 	do
-		nvidia-smi -i ${LINE} > ${FILE} 
+		nvidia-smi -i ${LINE} > ${FILE}
 
 		TIME=`head -n1 ${FILE}`
 		VERSION=`head -n3 ${FILE} | tail -n1 | cut -d' ' -f3`
@@ -43,15 +43,19 @@ function gpu_parser {
 		else
 
 			GPU=`head -n9  ${FILE} | tail -n2`
+                        PARSE=$(echo ${GPU} | awk -F'|' '{print($5" "$6" "$7" "$8)}' | tr -d '/\t\r\n%CWMiBDefault' | tr -s ' ')
+                        echo ${PARSE}
 			GPU_NO=${LINE}
-			GPU_FAN=`echo ${GPU} | cut -d'|' -f6 | cut -d' ' -f2 | sed 's/.$//'`
-			GPU_TEMP=`echo ${GPU} | cut -d'|' -f6 | cut -d' ' -f3 | sed 's/.$//'`
-			GPU_PWR=`echo ${GPU} | cut -d'|' -f6 | cut -d' ' -f5 | sed 's/.$//'`
-			GPU_MAX_PWR=`echo ${GPU} | cut -d'|' -f6 | cut -d' ' -f7 | sed 's/.$//'`
-			GPU_MEM=`echo ${GPU} | cut -d'|' -f7 | cut -d' ' -f2 | sed 's/...$//'`
-			GPU_MAX_MEM=`echo ${GPU} | cut -d'|' -f7 | cut -d' ' -f4 | sed 's/...$//'`
-			GPU_UTIL=`echo ${GPU} | cut -d '|' -f8 | cut -d' ' -f2 | sed 's/.$//'`
+			GPU_FAN=$(echo ${PARSE} | cut -d ' ' -f1 )
+			GPU_TEMP=$(echo ${PARSE} | cut -d ' ' -f2 )
+			GPU_PWR=$(echo ${PARSE} | cut -d ' ' -f4 )
+			GPU_MAX_PWR=$(echo ${PARSE} | cut -d ' ' -f5 )
+			GPU_MEM=$(echo ${PARSE} | cut -d ' ' -f6 )
+			GPU_MAX_MEM=$(echo ${PARSE} | cut -d ' ' -f7 )
+			GPU_UTIL=$(echo ${PARSE} | cut -d ' ' -f8 )
 			GPU_MHS=`echo ${MHS} | cut -d ',' -f $((LINE+1)) | cut -c4- | tr -d " \r"`
+                        #echo $GPU_FAN $GPU_TEMP $GPU_PWR $GPU_MAX_PWR $GPU_MEM $GPU_MAX_MEM $GPU_UTIL
+                        #exit 0
 
 			if [ "${GPU_MHS}" = "" ];then
 				GPU_MHS=0
