@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /opt/central_monitor
 
 if [ "$1" = "ini" ]; then
   echo "Make binary file executable!!"
