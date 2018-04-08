@@ -3,7 +3,6 @@ Description=Node Exporter
 
 [Service]
 Type=idle
-ExecStartPre=/opt/central_monitor/script/gpu_env.sh
 ExecStart=/opt/central_monitor/bin/node_exporter -collector.textfile.directory "/opt/central_monitor/txt" 
 ExecReload=/bin/kill -s HUP $MAINPID
 KillSignal=SIGQUIT
