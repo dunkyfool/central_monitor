@@ -2,4 +2,4 @@
 
 PASS=digitalespacio
 
-echo ${PASS} | sudo -E cp /home/ethos/central_monitor /opt/
+echo ${PASS} | sudo -E cp -r /home/ethos/central_monitor /opt/
