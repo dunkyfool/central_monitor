@@ -33,9 +33,10 @@ def validateIP(s):
 def takeLast(hostlist):
     ip2host = {}
     for hostIp in hostlist:
-            host = hostIp[0]
-            ip = hostIp[1]
-            ip2host[ip] = host
+            if "miner" in hostIp[0]:
+              host = hostIp[0]
+              ip = hostIp[1]
+              ip2host[ip] = host
 
     tmpHostList = []
     for ip in ip2host:
