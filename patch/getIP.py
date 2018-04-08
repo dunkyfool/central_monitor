@@ -16,7 +16,7 @@ def readConfig():
   idx = 1
   with open('mac_list.csv') as f:
     for line in f.readlines():
-      NO, _, _, MAC, TEAMVIEWERID, PLC_NO, REG_ADDR = line.split(',')
+      NO, _, _, MAC, TEAMVIEWERID, PLC_NO, REG_ADDR, CHASIS_NO = line.split(',')
       MAC = MAC.lower().replace('-',':')
       mac_list += [MAC]
       miner_dict['miner'+str(idx)] = {\
@@ -25,6 +25,7 @@ def readConfig():
                                    "TEAMVIEWERID": TEAMVIEWERID,
                                    "PLC_NO": PLC_NO[1:],
                                    "REG_ADDR": REG_ADDR.rstrip(),
+                                   "CHASIS_NO": CHASIS_NO,
 				   "reboot_count": 0,
 				   "dev_0_freq": 1900,
 				   "dev_1_freq": 1900,

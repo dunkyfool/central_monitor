@@ -11,11 +11,11 @@ def main():
       if outcome:
           if opt == "reboot":
               re_cnt = outcome['reboot_count']
-              PLC_NO = int(outcome['PLC_NO'])
+              CHASIS_NO = int(outcome['CHASIS_NO'])
               REG_ADDR = int(outcome['REG_ADDR'])
               r.hmset(miner, {"reboot_count": int(re_cnt)+1})
               # reboot command
-              reboot(PLC_NO, REG_ADDR)
+              reboot(CHASIS_NO, REG_ADDR)
 
           elif opt == "decreaseFreq":
               devid = sys.argv[3]
@@ -66,22 +66,22 @@ def main():
 #      print "[WARN] Wrong Commands"
 
 
-def reboot(PLC_NO, REG_ADDR):
+def reboot(CHASIS_NO, REG_ADDR):
 	import serial
 	import pymodbus
 	from pymodbus.client.sync import ModbusSerialClient as ModbusClient
         import time
 
-        #PLC_NO=10
+        #CHASIS_NO=10
         #REG_ADDR=2048
 
 	client = ModbusClient(method="ascii", port="/dev/ttyUSB0", stopbits=1, bytesize=8, parity="N", baudrate=9600, timeout=20)
-	client.write_register(0x1000, 600, unit=PLC_NO)
-        status = client.read_coils(2048, 1, unit=PLC_NO)
+	#client.write_register(0x1000, 600, unit=CHASIS_NO)
+        status = client.read_coils(REG_ADDR, 1, unit=CHASIS_NO)
         if status.bits[0]:
-            client.write_coil(REG_ADDR, False, unit=PLC_NO)
+            client.write_coil(REG_ADDR, False, unit=CHASIS_NO)
         else:
-          client.write_coil(REG_ADDR, True, unit=PLC_NO)
+          client.write_coil(REG_ADDR, True, unit=CHASIS_NO)
 	client.close()
 
 
