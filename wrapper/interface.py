@@ -1,6 +1,7 @@
 import sys, os
 import redis
 import uuid
+import time
 
 def main():
 #  try:
@@ -38,6 +39,10 @@ def main():
               cmd = 'sshpass -p digitalespacio scp -o StrictHostKeyChecking=no /tmp/'+random_name+' ethos@'+miner+':/home/ethos/freq.csv && rm /tmp/'+random_name
               #cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
+              time.sleep(10)
+              CHASIS_NO = int(outcome['CHASIS_NO'])
+              REG_ADDR = int(outcome['REG_ADDR'])
+              reboot(CHASIS_NO, REG_ADDR)
 
           elif opt == "increaseFreq":
               devid = sys.argv[3]
@@ -60,6 +65,10 @@ def main():
               cmd = 'sshpass -p digitalespacio scp -o StrictHostKeyChecking=no /tmp/'+random_name+' ethos@'+miner+':/home/ethos/freq.csv && rm /tmp/'+random_name
               #cmd = "ssh "+miner+" sh /opt/central_monitor/script/setFreq.sh "+devid+" "+str(dev_freq)
               os.system(cmd)
+              time.sleep(10)
+              CHASIS_NO = int(outcome['CHASIS_NO'])
+              REG_ADDR = int(outcome['REG_ADDR'])
+              reboot(CHASIS_NO, REG_ADDR)
       else:
         print "[WARN] " + miner + " not found!"
 #  except:
