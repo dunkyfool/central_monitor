@@ -16,7 +16,7 @@ app.post("/*", (req, res) => {
 	var miner = req.body.commonLabels.instance.split(":",1)[0];
 	if ( alertname == "InstanceDown" ) {
 		var spawn = require("child_process").spawn;
-		var pythonProcess = spawn('python',["interface.py", miner, "reboot"]);
+		var pythonProcess = spawn('python',["/opt/central_monitor/wrapper/interface.py", miner, "reboot"]);
 		//pythonProcess.stdout.on('data', function (data) {
 		//});
 		console.log(miner+" REBOOT!");
@@ -25,7 +25,7 @@ app.post("/*", (req, res) => {
 	} else if ( alertname == "LoseGPU" ) {
 		var devid = req.body.commonLabels.devid;
 		var spawn = require("child_process").spawn;
-		var pythonProcess = spawn('python',["interface.py", miner, "decreaseFreq", devid]);
+		var pythonProcess = spawn('python',["/opt/central_monitor/wrapper/interface.py", miner, "decreaseFreq", devid]);
 		pythonProcess.stdout.on('data', function (data) {
 		});
 		console.log(miner+" "+devid+" DECREASE FREQ!");
