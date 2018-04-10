@@ -91,7 +91,9 @@ def rebootCheck(outcome):
     current_date = get_current_date()
     if "current_date" not in outcome:
         outcome['current_date'] = current_date
-        if int(outcome['daily_reboot_count']) <= MAX_REBOOT_NUM:
+        if 'daily_reboot_count' not in outcome:
+            outcome['daily_reboot_count'] = 0
+        if int(outcome['daily_reboot_count']) < MAX_REBOOT_NUM:
             outcome['daily_reboot_count'] = int(outcome['daily_reboot_count']) + 1
             outcome['reboot_count'] = int(outcome['reboot_count']) + 1
             return True, outcome
@@ -100,7 +102,9 @@ def rebootCheck(outcome):
             return False, outcome
     else:
         if current_date == outcome['current_date']:
-            if int(outcome['daily_reboot_count']) <= MAX_REBOOT_NUM:
+            if 'daily_reboot_count' not in outcome:
+                outcome['daily_reboot_count'] = 0
+            if int(outcome['daily_reboot_count']) < MAX_REBOOT_NUM:
                 outcome['daily_reboot_count'] = int(outcome['daily_reboot_count']) + 1
                 outcome['reboot_count'] = int(outcome['reboot_count']) + 1
                 return True, outcome
