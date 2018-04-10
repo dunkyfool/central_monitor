@@ -2,6 +2,9 @@ import sys, os
 import redis
 import uuid
 import time
+from datetime import datetime
+
+MAX_REBOOT_NUM = 10
 
 def main():
 #  try:
@@ -11,12 +14,13 @@ def main():
 
       if outcome:
           if opt == "reboot":
-              re_cnt = outcome['reboot_count']
               CHASIS_NO = int(outcome['CHASIS_NO'])
               REG_ADDR = int(outcome['REG_ADDR'])
-              r.hmset(miner, {"reboot_count": int(re_cnt)+1})
+              flag, outcome = rebootCheck(outcome)
+              r.hmset(miner, outcome)
               # reboot command
-              reboot(CHASIS_NO, REG_ADDR)
+              if flag:
+                  reboot(CHASIS_NO, REG_ADDR)
 
           elif opt == "decreaseFreq":
               devid = sys.argv[3]
@@ -42,7 +46,9 @@ def main():
               time.sleep(10)
               CHASIS_NO = int(outcome['CHASIS_NO'])
               REG_ADDR = int(outcome['REG_ADDR'])
-              reboot(CHASIS_NO, REG_ADDR)
+              flag, outcome = rebootCheck(outcome)
+              if flag:
+                  reboot(CHASIS_NO, REG_ADDR)
 
           elif opt == "increaseFreq":
               devid = sys.argv[3]
@@ -68,11 +74,45 @@ def main():
               time.sleep(10)
               CHASIS_NO = int(outcome['CHASIS_NO'])
               REG_ADDR = int(outcome['REG_ADDR'])
-              reboot(CHASIS_NO, REG_ADDR)
+              flag, outcome = rebootCheck(outcome)
+              if flag:
+                  reboot(CHASIS_NO, REG_ADDR)
       else:
         print "[WARN] " + miner + " not found!"
 #  except:
 #      print "[WARN] Wrong Commands"
+
+
+def get_current_date():
+    return str(datetime.now()).split(' ')[0]
+
+
+def rebootCheck(outcome):
+    current_date = get_current_date()
+    if "current_date" not in outcome:
+        outcome['current_date'] = current_date
+        if int(outcome['daily_reboot_count']) <= MAX_REBOOT_NUM:
+            outcome['daily_reboot_count'] = int(outcome['daily_reboot_count']) + 1
+            outcome['reboot_count'] = int(outcome['reboot_count']) + 1
+            return True, outcome
+        else:
+            outcome['reboot_count'] = int(outcome['reboot_count']) + 1
+            return False, outcome
+    else:
+        if current_date == outcome['current_date']:
+            if int(outcome['daily_reboot_count']) <= MAX_REBOOT_NUM:
+                outcome['daily_reboot_count'] = int(outcome['daily_reboot_count']) + 1
+                outcome['reboot_count'] = int(outcome['reboot_count']) + 1
+                return True, outcome
+            else:
+                outcome['reboot_count'] = int(outcome['reboot_count']) + 1
+                return False, outcome
+        else:
+            outcome['current_date'] = current_date
+            outcome['daily_reboot_count'] = 0
+            outcome['reboot_count'] = int(outcome['reboot_count']) + 1
+            return True, outcome
+
 
 
 def reboot(CHASIS_NO, REG_ADDR):
