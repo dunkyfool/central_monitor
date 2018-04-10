@@ -180,8 +180,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:38772",
           "expr": "min(node_time{instance=\"miner1:9100\"} - node_boot_time{instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -342,8 +344,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:38865",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"0\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -422,8 +426,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:38911",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"1\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -502,8 +508,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:38958",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"2\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -582,8 +590,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39005",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"3\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -662,8 +672,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39052",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"4\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -742,8 +754,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39099",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"5\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -822,8 +836,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39146",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"6\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -902,8 +918,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39193",
           "expr": "avg(node_gpu_metrics{content=\"GPU_FAN\",devid=\"7\", instance=\"miner1:9100\"})",
           "format": "time_series",
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -982,9 +1000,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39240",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"0\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"0\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1063,9 +1082,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39286",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"1\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"1\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1144,9 +1164,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39332",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"2\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"2\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1225,9 +1246,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39377",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"3\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"3\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1306,9 +1328,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39422",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"4\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"4\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1387,9 +1410,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39468",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"5\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"5\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1468,9 +1492,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39514",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"6\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"6\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1549,9 +1574,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39560",
           "expr": "sum(node_gpu_metrics{content=\"GPU_MEM\",devid=\"7\", instance=\"miner1:9100\"}) / sum(node_gpu_metrics{content=\"GPU_MAX_MEM\",devid=\"7\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1630,9 +1656,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39606",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"0\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1711,9 +1738,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39652",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"1\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1792,9 +1820,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39698",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"2\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1873,9 +1902,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39745",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"3\", instance=\"miner1:9100\"})",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -1954,9 +1984,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39792",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"4\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -2035,9 +2066,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39838",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"5\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -2116,9 +2148,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39885",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"6\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -2197,9 +2230,10 @@
       "tableColumn": "",
       "targets": [
         {
+          "$$hashKey": "object:39932",
           "expr": "avg(node_gpu_metrics{content=\"GPU_PWR\",devid=\"7\", instance=\"miner1:9100\"}) ",
           "format": "time_series",
-          "instant": false,
+          "instant": true,
           "intervalFactor": 1,
           "refId": "A"
         }
@@ -2504,5 +2538,5 @@
   "timezone": "browser",
   "title": "Miner 1",
   "uid": "tA6c5fzmk",
-  "version": 28
+  "version": 30
 }
