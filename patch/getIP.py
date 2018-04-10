@@ -88,6 +88,7 @@ def ini_redis():
   miner_dict, mac_list, mac2miner = readConfig()
   for miner in miner_dict:
       push2Redis(miner, miner_dict[miner])
+      write2Hosts(miner_dict[miner]['IP'], miner)
 
 
 if __name__=="__main__":
