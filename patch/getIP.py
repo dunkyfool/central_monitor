@@ -16,7 +16,7 @@ def readConfig():
   idx = 1
   with open('mac_list.csv') as f:
     for line in f.readlines():
-      NO, _, _, MAC, TEAMVIEWERID, PLC_NO, REG_ADDR, CHASIS_NO = line.split(',')
+      NO, _, _, MAC, TEAMVIEWERID, PLC_NO, REG_ADDR, CHASIS_NO, IP, _ = [ x.rstrip() for x in line.split(',') ]
       MAC = MAC.lower().replace('-',':')
       mac_list += [MAC]
       miner_dict['miner'+str(idx)] = {\
@@ -26,19 +26,22 @@ def readConfig():
                                    "PLC_NO": PLC_NO[1:],
                                    "REG_ADDR": REG_ADDR.rstrip(),
                                    "CHASIS_NO": CHASIS_NO.rstrip(),
-				   "reboot_count": 0,
-				   "dev_0_freq": 1900,
-				   "dev_1_freq": 1900,
-				   "dev_2_freq": 1900,
-				   "dev_3_freq": 1900,
-				   "dev_4_freq": 1900,
-				   "dev_5_freq": 1900,
-				   "dev_6_freq": 1900,
-				   "dev_7_freq": 1900,
+                                   "IP": IP,
+                                   "current_date": "1990-01-13",
+                                   "daily_reboot_count": 0,
+                                   "reboot_count": 0,
+                                   "dev_0_freq": 1900,
+                                   "dev_1_freq": 1900,
+                                   "dev_2_freq": 1900,
+                                   "dev_3_freq": 1900,
+                                   "dev_4_freq": 1900,
+                                   "dev_5_freq": 1900,
+                                   "dev_6_freq": 1900,
+                                   "dev_7_freq": 1900,
       }
-      mac2miner[MAC] = 'miner'+str(idx) 
+      mac2miner[MAC] = 'miner'+str(idx)
       idx += 1
-      
+
   return miner_dict, mac_list, mac2miner
 
 
@@ -54,11 +57,11 @@ def write2Hosts(ip, miner):
     f.write(str(ip)+'\t'+miner+'\n')
 
 
-if __name__=="__main__":
+def Scan():
   miner_dict, mac_list, mac2miner = readConfig()
   for ip in range(2,255):
     _MAC = getRemoteMAC(ip)
-    try: 
+    try:
       _MAC = [ x.rstrip() for x in _MAC.split('\n') if x != '']
       pprint(_MAC)
     except:
@@ -72,10 +75,21 @@ if __name__=="__main__":
       miner_dict[mac2miner[match[0]]] = origin_dict
 
       push2Redis(mac2miner[match[0]], origin_dict)
-      write2Hosts('192.168.88.'+str(ip),mac2miner[match[0]])      
+      write2Hosts('192.168.88.'+str(ip),mac2miner[match[0]])
 
       for _mac in _MAC:
         try:
           mac_list.remove(_mac)
         except:
           continue
+
+
+def ini_redis():
+  miner_dict, mac_list, mac2miner = readConfig()
+  for miner in miner_dict:
+      push2Redis(miner, miner_dict[miner])
+
+
+if __name__=="__main__":
+    #Scan()
+    ini_redis()
